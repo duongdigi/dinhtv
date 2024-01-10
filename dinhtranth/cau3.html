@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Du Lịch</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">    
+</head>
+<body>
+    <h1>Điểm Đến Phổ Biến</h1>
+
+    <div class="destination-container">
+        <div class="destination">
+            <img src="https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg" onclick="openLightbox('https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg')">
+            <div class="destination-info">
+                <h2>Điểm Đến 1</h2>
+                <p>Mô tả ngắn về điểm đến 1.</p>
+            </div>
+        </div>       
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+    </div>
+
+    <div class="comments-container">
+        <h2>Bình Luận</h2>
+        <div id="comments-list"></div>
+        <div class="comment-form">
+            <label>Bình Luận:</label>
+            <textarea id="comment" name="comment" rows="4" required></textarea>
+            <button onclick="addComment()">Gửi Bình Luận</button>
+        </div>
+    </div>
+    <style>
+        .comment {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .comments-container {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .destination-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .destination {
+            position: relative;
+            width: 300px;
+            margin: 20px;
+            background-color: white;
+        }
+
+        .destination img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .destination-info {
+            padding: 15px;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 80%;
+            max-height: 80%;
+            margin: auto;
+            display: block;
+        }
+    </style>
+    <script>
+        function openLightbox(imageSrc) {
+            document.getElementById('lightbox-img').src = imageSrc;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function addComment() {
+            const commentText = document.getElementById('comment').value;
+
+            if (commentText.trim() === "") {
+                alert("Vui lòng nhập nội dung bình luận.");
+                return;
+            }
+
+            const commentList = JSON.parse(localStorage.getItem('comments')) || [];
+            const currentDate = new Date();
+            const comment = {
+                text: commentText,
+                date: currentDate.toLocaleString(),
+            };
+
+            commentList.push(comment);
+            localStorage.setItem('comments', JSON.stringify(commentList));
+            displayComments();
+
+            document.getElementById('comment').value = "";
+        }
+
+        function displayComments() {
+            const commentList = JSON.parse(localStorage.getItem('comments')) || [];
+            const commentsContainer = document.getElementById('comments-list');
+
+            commentsContainer.innerHTML = "";
+
+            if (commentList.length === 0) {
+                commentsContainer.innerHTML = "<p>Chưa có bình luận nào.</p>";
+            } else {
+                commentList.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.classList.add('comment');
+                    commentElement.innerHTML = `<h4>${comment.date}</h4><p>${comment.text}</p>`;
+                    commentsContainer.appendChild(commentElement);
+                });
+            }
+        }
+        displayComments();
+    </script>
+</body>
+</html>

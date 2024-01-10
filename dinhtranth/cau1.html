@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Du Lịch</title>    
+</head>
+<body>
+    <h1 class="heading">Điểm Đến Phổ Biến</h1>
+
+    <div class="destination-container">
+        <div class="destination">
+            <img src="https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg" alt="Destination 1" onclick="openLightbox('https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg')">
+            <div class="destination-info">
+                <h2>Điểm Đến 1</h2>
+                <p>Mô tả ngắn về điểm đến 1.</p>
+            </div>
+        </div>
+        <div class="destination">
+            <img src="https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg" alt="Destination 1" onclick="openLightbox('https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg')">
+            <div class="destination-info">
+                <h2>Điểm Đến 2</h2>
+                <p>Mô tả ngắn về điểm đến 2.</p>
+            </div>
+        </div>
+        <div class="destination">
+            <img src="https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg" alt="Destination 1" onclick="openLightbox('https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg')">
+            <div class="destination-info">
+                <h2>Điểm Đến 3</h2>
+                <p>Mô tả ngắn về điểm đến 3.</p>
+            </div>
+        </div>
+        <div class="destination">
+            <img src="https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg" alt="Destination 1" onclick="openLightbox('https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg')">
+            <div class="destination-info">
+                <h2>Điểm Đến 4</h2>
+                <p>Mô tả ngắn về điểm đến 4.</p>
+            </div>
+        </div>
+        <div class="destination">
+            <img src="https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg" alt="Destination 1" onclick="openLightbox('https://media1.nguoiduatin.vn/thumb_x992x595/media/ngac-kim-giang/2022/12/28/london.jpg')">
+            <div class="destination-info">
+                <h2>Điểm Đến 5</h2>
+                <p>Mô tả ngắn về điểm đến 5.</p>
+            </div>
+        </div>        
+
+       
+    </div>
+
+    <form>
+        <h2>Đặt Tour</h2>
+        <label>Họ và Tên:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label>Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label>Điểm Đến Mong Muốn:</label>
+        <select id="destination" name="destination" required>
+            <option value="destination1">Điểm Đến 1</option>
+            <option value="destination1">Điểm Đến 2</option>
+            <option value="destination1">Điểm Đến 3</option>
+            <option value="destination1">Điểm Đến 4</option>
+            <option value="destination5">Điểm Đến 5</option>
+        </select>
+
+        <label>Ngày Khởi Hành:</label>
+        <input type="date" id="departure-date" name="departure-date" required>
+
+        <button type="submit">Đặt Tour</button>
+    </form>
+     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+    </div>
+    <script>
+        function openLightbox(imageSrc) {
+            document.getElementById('lightbox-img').src = imageSrc;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+    <style>
+        .heading {
+            text-align: center;
+        }
+
+        .destination-container {
+            display: flex;
+            justify-content: space-around;
+        }        
+        .destination img {
+            width: 100%;
+            height: 200px;
+        }
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 80%;
+            max-height: 80%;
+            margin: auto;
+            display: block;
+        }
+    </style>
+</body>
+</html>
